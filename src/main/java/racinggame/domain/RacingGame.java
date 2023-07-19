@@ -5,6 +5,7 @@ import racinggame.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGame {
     private final List<Car> cars;
@@ -34,7 +35,7 @@ public class RacingGame {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.move();
+            car.move(new Random().nextInt(10));
         }
     }
 
