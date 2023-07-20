@@ -23,6 +23,22 @@ public class Cars {
         return new Cars(newCars);
     }
 
+    public static Cars createWithPosition(String names, int position) {
+        String[] newNames = StringGenerator.generateString(names);
+        List<Car> newCars = Arrays.stream(newNames)
+                .map(name -> Car.createWithPosition(name, position))
+                .toList();
+        return new Cars(newCars);
+    }
+
+    public int size() {
+        return cars.size();
+    }
+
+    public void moves(int randomNumber) {
+        cars.forEach(car -> car.move(randomNumber));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,9 +50,5 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
-    }
-
-    public int size() {
-        return cars.size();
     }
 }
