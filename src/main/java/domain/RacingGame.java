@@ -1,5 +1,7 @@
 package domain;
 
+import domain.port.RandomGenerator;
+
 import java.util.Objects;
 
 public class RacingGame {
@@ -33,7 +35,16 @@ public class RacingGame {
         Count newCount = Count.create(position);
         return new RacingGame(newCars, newTryNo, newCount);
     }
-    public void race(int randomNumber) {
+
+    public Cars getCars() {
+        return cars;
+    }
+
+    public Cars getWinners() {
+        return cars.getWinners();
+    }
+
+    public void race(RandomGenerator randomNumber) {
         cars.moves(randomNumber);
         this.count = count.countUp();
     }

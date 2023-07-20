@@ -17,7 +17,9 @@ public class Position {
         return new Position(position);
     }
 
-
+    public int getPosition() {
+        return position;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,5 +42,9 @@ public class Position {
 
     public Position move() {
         return new Position(position + 1);
+    }
+
+    public Position moreThan(Position maxPosition) {
+        return position > maxPosition.position ? this : maxPosition;
     }
 }

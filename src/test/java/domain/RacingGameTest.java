@@ -27,7 +27,7 @@ class RacingGameTest {
         RandomGenerator randomGenerator = new FakeRandomGenerator(4);
         int tryNo = 5;
         RacingGame racingGame = RacingGame.create(names, tryNo);
-        racingGame.race(randomGenerator.getRandomNumber());
+        racingGame.race(randomGenerator);
 
         assertThat(racingGame).isEqualTo(RacingGame.createWithPosition(names, tryNo, 1));
     }

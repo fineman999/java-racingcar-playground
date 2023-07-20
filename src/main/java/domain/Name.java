@@ -25,6 +25,10 @@ public class Name {
         return name.length() > 5;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

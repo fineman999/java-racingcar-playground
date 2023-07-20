@@ -1,5 +1,6 @@
 package domain;
 
+import domain.port.RandomGenerator;
 import util.StringGenerator;
 
 import java.util.Arrays;
@@ -9,7 +10,6 @@ import java.util.Objects;
 public class Cars {
 
     private final List<Car> cars;
-
     private Cars(List<Car> cars) {
         this.cars = cars;
     }
@@ -35,10 +35,26 @@ public class Cars {
         return cars.size();
     }
 
-    public void moves(int randomNumber) {
-        cars.forEach(car -> car.move(randomNumber));
+    public void moves(RandomGenerator randomNumber) {
+        cars.forEach(car -> car.move(randomNumber.getRandomNumber()));
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public Cars getWinners() {
+        Position maxPosition = Position.startFromZero();
+        for (Car car : cars) {
+            maxPosition = car.checkMaxPosition(maxPosition);
+        }
+
+        Position finalMaxPosition = maxPosition;
+        List<Car> winners = cars.stream()
+                .filter(car -> car.isWinner(finalMaxPosition))
+                .toList();
+        return new Cars(winners);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,5 +66,12 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
+    }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -18,6 +19,14 @@ class CarsTest {
         assertThat(cars).isEqualTo(Cars.create(names));
     }
 
+    @Test
+    @DisplayName("자동차 승리 테스트")
+    void getWinners() {
+        Cars cars = Cars.createWithPosition("pobi,crong,honux", 3);
 
+        Cars winners = cars.getWinners();
+
+        assertThat(winners).isEqualTo(Cars.createWithPosition("pobi,crong,honux", 3));
+    }
 
 }

@@ -20,6 +20,20 @@ public class Car {
         return new Car(Name.create(pobi), Position.create(position));
     }
 
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            this.position = position.move();
+        }
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,9 +55,11 @@ public class Car {
                 '}';
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= 4) {
-            this.position = position.move();
-        }
+    public Position checkMaxPosition(Position maxPosition) {
+        return position.moreThan(maxPosition);
+    }
+
+    public boolean isWinner(Position maxPosition) {
+        return position.equals(maxPosition);
     }
 }
