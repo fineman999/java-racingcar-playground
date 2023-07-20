@@ -5,12 +5,16 @@ import java.util.Objects;
 public class Position {
     private final int position;
 
-    public Position(int position) {
+    private Position(int position) {
         this.position = position;
     }
 
     public static Position startFromZero() {
         return new Position(0);
+    }
+
+    public static Position create(int position) {
+        return new Position(position);
     }
 
 
@@ -32,5 +36,9 @@ public class Position {
         return "Position{" +
                 "position=" + position +
                 '}';
+    }
+
+    public Position move() {
+        return new Position(position + 1);
     }
 }
