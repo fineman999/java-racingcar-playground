@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Car {
 
+    public static final int FORWARD_NUM = 4;
     private final Name name;
     private Position position;
 
@@ -21,7 +22,7 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= FORWARD_NUM) {
             this.position = position.move();
         }
     }
@@ -32,6 +33,17 @@ public class Car {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    public Position checkMaxPosition(Position maxPosition) {
+        if (position.moreThan(maxPosition)) {
+            return position;
+        }
+        return maxPosition;
+    }
+
+    public boolean isWinner(Position maxPosition) {
+        return position.equals(maxPosition);
     }
 
     @Override
@@ -53,13 +65,5 @@ public class Car {
                 "name=" + name +
                 ", position=" + position +
                 '}';
-    }
-
-    public Position checkMaxPosition(Position maxPosition) {
-        return position.moreThan(maxPosition);
-    }
-
-    public boolean isWinner(Position maxPosition) {
-        return position.equals(maxPosition);
     }
 }

@@ -20,6 +20,14 @@ public class Position {
     public int getPosition() {
         return position;
     }
+
+    public Position move() {
+        return new Position(position + 1);
+    }
+
+    public boolean moreThan(Position maxPosition) {
+        return position > maxPosition.position;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,13 +46,5 @@ public class Position {
         return "Position{" +
                 "position=" + position +
                 '}';
-    }
-
-    public Position move() {
-        return new Position(position + 1);
-    }
-
-    public Position moreThan(Position maxPosition) {
-        return position > maxPosition.position ? this : maxPosition;
     }
 }
